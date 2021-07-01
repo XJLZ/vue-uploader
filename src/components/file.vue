@@ -6,6 +6,7 @@
       :status="status"
       :paused="paused"
       :error="error"
+      :cmd5="cmd5"
       :response="response"
       :average-speed="averageSpeed"
       :formated-average-speed="formatedAverageSpeed"
@@ -74,6 +75,7 @@
         response: null,
         paused: false,
         error: false,
+        cmd5: false,
         averageSpeed: 0,
         currentSpeed: 0,
         isComplete: false,
@@ -127,12 +129,15 @@
         const isComplete = this.isComplete
         const isError = this.error
         const paused = this.paused
+        const cmd5 = this.cmd5
         if (isComplete) {
           return 'success'
         } else if (isError) {
           return 'error'
         } else if (isUploading) {
           return 'uploading'
+        } else if (cmd5) {
+          return 'cmd5'
         } else if (paused) {
           return 'paused'
         } else {
@@ -181,6 +186,7 @@
         this.paused = this.file.paused
         this.error = this.file.error
         this.isUploading = this.file.isUploading()
+        this.cmd5 = this.file.cmd5
       },
       pause () {
         this.file.pause()
@@ -246,7 +252,7 @@
       }
     },
     mounted () {
-      const staticProps = ['paused', 'error', 'averageSpeed', 'currentSpeed']
+      const staticProps = ['paused', 'error', 'averageSpeed', 'currentSpeed', 'cmd5']
       const fnProps = [
         'isComplete',
         'isUploading',

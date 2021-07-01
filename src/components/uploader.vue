@@ -53,7 +53,8 @@
             error: 'error',
             uploading: 'uploading',
             paused: 'paused',
-            waiting: 'waiting'
+            waiting: 'waiting',
+            md5: 'cmd5'
           }
         }
       }
